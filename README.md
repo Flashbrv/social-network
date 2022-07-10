@@ -1,1 +1,1 @@
-# GSimple React App For Education Purposes
+# Simple React App For Education Purposes
