@@ -1,0 +1,114 @@
+.container {
+  grid-area: content;
+  background-color: #85E688;
+}
+
+.image {
+  height: 200px;
+  background: url(https://klike.net/uploads/posts/2019-07/1562069947_1.jpg) no-repeat center;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.person {
+  padding: 10px;
+  display: grid;
+  grid-template: 
+    "pdi pdt"
+    "pdi pdc";
+  grid-template-columns: 2fr 8fr;
+  grid-gap: 10px;
+  color: darkolivegreen;
+}
+
+.person_img {
+  grid-area: pdi;
+  height: 150px;
+  background: url(https://vjoy.cc/wp-content/uploads/2020/11/volk_kartinki_11_02065205-768x576-1.jpg) no-repeat center;
+  background-size: cover;
+}
+
+.person_title {
+  grid-area: pdt;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.person_data {
+  grid-area: pdc;
+  font-weight: normal;
+  font-size: 15px;
+}
+
+.person_data span {
+  font-weight: bold;
+}
+
+.form {
+  padding: 0 15px;
+  color: darkolivegreen;
+}
+
+.form form {
+  display: grid;
+  grid-template: 
+    "ft"
+    "fbtn";
+}
+
+.text {
+  grid-area: ft;
+  margin-bottom: 15px;
+  min-height: 50px;
+  background-color: #f2f1f1;
+  color: #38613A;
+  border: none;
+  padding: 5px 10px;
+  outline: none;
+  resize: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn {
+  grid-area: fbtn;
+  justify-self: end;
+  background-color: #31AD35;
+  border: 1px solid #38613A;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.posts_list {
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 15px;
+  margin: 20px 15px;
+}
+
+.post {
+  background-color: #f2f1f1;
+  padding: 15px;
+  border-radius: 10px;
+  display: grid;
+  grid-template: "postimg posttext";
+  grid-template-columns: 1fr 9fr;
+  grid-gap: 15px;
+}
+
+.post_img {
+  grid-area: postimg;
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  background-color: #E0BB41;
+  border-radius: 50%;
+}
+
+.post_text {
+  grid-area: posttext;
+  display: inline-block;
+  align-self: center;
+  justify-self: start;
+}

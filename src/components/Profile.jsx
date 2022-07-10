@@ -1,37 +1,38 @@
-import React from "react";
+import React from 'react';
+import styles from './Profile.module.css';
 
 const Profile = () => {
   return(
-    <div className='content'>
-      <div className='content__img'></div>
-      <div className='content__persona-data'>
-        <div className='person-data__img'></div>
-        <div className='person-data'>
-          <div className='person-data__title'>
+    <div className={styles.container}>
+      <div className={styles.image}></div>
+      <div className={styles.person}>
+        <div className={styles.person_img}></div>
+        <div>
+          <div className={styles.person_title}>
             Roman B.
           </div>
-          <div className='person-data__content'>
+          <div className={styles.person_data}>
             <span>Date of birth:</span> 20 december<br/>
             <span>City:</span> Poltava<br/>
-            <span>Education:</span> NUFI \'06<br/>
+            <span>Education:</span> NUFI '06<br/>
           </div>
         </div>
       </div>
-      <div className='content__form'>
+      <div className={styles.form}>
         <h3>My posts</h3>
         <form>
-          <textarea className='form-text' type='textarea' rows={4} placeholder='Your news' />
-          <button className='form-btn'>Send</button>
+          <textarea className={styles.text} type='textarea' rows={4} placeholder='Your news' />
+          <button className={styles.btn}>Send</button>
         </form>
       </div>
-      <div className='content__posts-list'>
-        <div className='post'>
-          <div className='post-img'></div>
-          <div className='post-text'>Hey, why nobody love me?</div>
+      <div className={styles.posts_list}>
+        <div className={styles.post}>
+          <div className={styles.post_img}></div>
+          <div className={styles.post_text}>Hey, why nobody love me?</div>
         </div>
-        <div className='post'>
-          <div className='post-img'></div>
-          <div className='post-text'>It's our new programm! Hey!</div>
+        <div className={styles.post}>
+          <div className={styles.post_img}></div>
+          <div className={styles.post_text}>It's our new programm! Hey!</div>
         </div>
       </div>
     </div>
