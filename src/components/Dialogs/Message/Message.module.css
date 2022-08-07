@@ -1,0 +1,51 @@
+.message { 
+  display: grid;
+  grid-template: 
+    "messagetitle messagetext";
+  grid-template-columns: 2fr 9fr;
+  grid-gap: 10px;
+  margin-bottom: 10px;
+}
+
+.messageTitle {
+  grid-area: messagetitle;
+  display: grid;
+  padding-top: 5px;
+  justify-content: center;
+  grid-template-rows: 50px 22px auto;
+}
+
+.messageImg {
+  margin: 0 auto;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.messageNick {
+  font-weight: bold;
+  text-align: center;
+}
+
+.messageText {
+  grid-area: messagetext;
+  background-color: #f2f1f1;
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 100%;
+  max-height: 100%;
+  border: #38613A solid 1px;
+  position: relative;
+}
+
+.messageText::before {
+  position: absolute;
+  content: "";
+  left: -11px;
+  top: 20px;
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  border-right:10px solid #38613A; 
+}

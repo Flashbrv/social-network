@@ -1,9 +1,13 @@
-.nav {
+.sidebar {
   grid-area: nav;
   min-width: 150px;
+}
+
+.nav {
   align-self: start;
   background-color: #3FE045;
   display: block;
+  margin-bottom: 5px;
 }
 
 .item {
@@ -19,6 +23,10 @@
   display: block;
 }
 
+.item a.activeLink {
+  background-color: #1B611D;
+}
+
 .item button {
   color: #fff;
   text-align: left;
@@ -29,3 +37,4 @@
   width: 100%;
   font-size: 16px;
 }
+

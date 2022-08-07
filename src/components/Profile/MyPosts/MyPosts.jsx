@@ -1,8 +1,11 @@
 import React from 'react'
 import styles from './MyPosts.module.css'
-import Post from './Post/Post';
+import Post from './Post/Post'
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+  
+  let postElements = props.posts.map( post => <Post message={post.message} likes={post.likes} key={post.id} /> )
+
   return (
     <div>
       <div className={styles.form}>
@@ -13,11 +16,10 @@ const MyPosts = () => {
         </form>
       </div>
       <div className={styles.posts_list}>
-        <Post message='Hey, why nobody love me?' likes='15' />
-        <Post message="It's my first React app! Hey!" likes='25' />
+        { postElements }
       </div>
     </div>
   )
 }
 
-export default MyPosts;
+export default MyPosts

@@ -1,0 +1,42 @@
+.image {
+  height: 200px;
+  background: url(https://klike.net/uploads/posts/2019-07/1562069947_1.jpg) no-repeat center;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.person {
+  padding: 20px;
+  display: grid;
+  grid-template: 
+    "pdi pdt"
+    "pdi pdc";
+  grid-template-columns: 2fr 8fr;
+  grid-gap: 10px;
+  color: darkolivegreen;
+}
+
+.person_img {
+  grid-area: pdi;
+  height: 150px;
+  background: url(https://vjoy.cc/wp-content/uploads/2020/11/volk_kartinki_11_02065205-768x576-1.jpg) no-repeat center;
+  background-size: cover;
+}
+
+.person_title {
+  grid-area: pdt;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.person_data {
+  grid-area: pdc;
+  font-weight: normal;
+  font-size: 15px;
+}
+
+.person_data span {
+  font-weight: bold;
+}
+
