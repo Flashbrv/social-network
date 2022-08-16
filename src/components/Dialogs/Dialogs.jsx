@@ -1,39 +1,52 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import styles from './Dialogs.module.css'
 import Dialog from './Dialog/Dialog'
 import Message from './Message/Message'
+import { addMessageActionCreator, changeMessageTextActionCreator } from '../../redux/dialogsReducer'
 
 const Dialogs = (props) => {
-    
-  const [activeDialog, setAcctiveDialog] = useState(0)
-  const [dialogElements, setDialogElements] = useState([])
-  useEffect(() => {
-    setDialogElements(props.state.dialogs.map( dialog  => {
+
+  let textareaElement = React.createRef()
+  const changeMessageTextHandler = () => {
+    let text = textareaElement.current.value
+    let action = changeMessageTextActionCreator(text)
+    props.dispatch(action)
+  }
+  const addMessageHandler = (event) => {
+    let action = addMessageActionCreator()
+    props.dispatch(action)
+    event.preventDefault()
+  }
+
+  let messageElements = props.dialogsPage.messages
+    .map( message => <Message nick={message.nick} avaPath={message.ava} message={message.text} key={message.id} /> )
+
+  let dialogElements = props.dialogsPage.dialogs
+    .map( dialog  => {
       let attr = {
         name: dialog.name,
         id: dialog.id,
         key: dialog.id,
-        onDialogSelected: handleDialogSelected
+        dispatch: props.dispatch
       }
-      if ( dialog.id === activeDialog ) {
+      if ( dialog.id === props.dialogsPage.selectedDialogId ) {
         attr['isActive'] = true
       }
       return <Dialog  {...attr} />
-    }))
-  }, [activeDialog])
+    })
 
-  const handleDialogSelected = (dialogId) => {
-    setAcctiveDialog(dialogId)
-  }
-  
-  let messageElements = props.state.messages
-    .map( message => <Message nick={message.nick} avaPath={message.ava} message={message.text} key={message.id} /> )
 
   return (
     <div className={styles.dialogs}>
       <div className={styles.persons}>
         <h2 className={styles.personsTitle}>Список контактів</h2>
         { dialogElements }
+      </div>
+      <div className={styles.form}> 
+        <form>
+          <textarea ref={ textareaElement } onChange={changeMessageTextHandler} value={props.dialogsPage.newMessageText} className={styles.text} type='textarea' rows={4} placeholder='Your message' />
+          <button onClick={ addMessageHandler }  className={styles.btn}>Send</button>
+        </form>
       </div>
       <div className={styles.messages}>
         { messageElements }

@@ -1,11 +1,15 @@
 .dialogs {
   display: grid;
   grid-template-columns: 3fr 6fr;
+  grid-template: 
+    "persons form"
+    "persons messages";
   align-self: start;
   color: darkolivegreen;
 }
 
 .persons {
+  grid-area: persons;
   display: grid;
   align-content: start;
   border-right: 1px solid #38613A;
@@ -19,8 +23,45 @@
   text-decoration: underline;
 }
 
+.form {
+  grid-area: form;
+  margin-top: 10px;
+  padding: 0 10px;
+  color: darkolivegreen;
+}
+
+.form form {
+  display: grid;
+  grid-template: 
+    "ft"
+    "fbtn";
+}
+
+.text {
+  grid-area: ft;
+  margin-bottom: 10px;
+  min-height: 50px;
+  background-color: #f2f1f1;
+  color: #38613A;
+  border: none;
+  padding: 5px 10px;
+  outline: none;
+  resize: none;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn {
+  grid-area: fbtn;
+  justify-self: end;
+  background-color: #31AD35;
+  border: 1px solid #38613A;
+  color: #fff;
+  padding: 10px 20px;
+}
 
 .messages {
+  grid-area: messages;
   padding: 10px;
 }
 
