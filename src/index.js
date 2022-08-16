@@ -3,19 +3,22 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
 import App from './App'
-import store from './redux/state'
+import store from './redux/redux-store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
-export const rerenderEntireTree = () => {  
+export const rerenderEntireTree = (state) => {  
   root.render(
     <React.StrictMode>
       <Router>
-        <App  state={store.getState()} dispatch={store.dispatch.bind(store)} />
+        <App  state={state} store={store} />
       </Router>
     </React.StrictMode>
   )
 }
 
-rerenderEntireTree()
+rerenderEntireTree(store.getState())
 
-store.subscribe(rerenderEntireTree)
+store.subscribe( () => {
+  let state = store.getState()
+  rerenderEntireTree(state)
+})

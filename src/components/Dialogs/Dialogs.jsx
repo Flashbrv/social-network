@@ -2,19 +2,15 @@ import React from 'react'
 import styles from './Dialogs.module.css'
 import Dialog from './Dialog/Dialog'
 import Message from './Message/Message'
-import { addMessageActionCreator, changeMessageTextActionCreator } from '../../redux/dialogsReducer'
 
 const Dialogs = (props) => {
 
-  let textareaElement = React.createRef()
-  const changeMessageTextHandler = () => {
-    let text = textareaElement.current.value
-    let action = changeMessageTextActionCreator(text)
-    props.dispatch(action)
+  const changeMessageTextHandler = (event) => {
+    let text = event.target.value
+    props.changeMessageText(text)
   }
   const addMessageHandler = (event) => {
-    let action = addMessageActionCreator()
-    props.dispatch(action)
+    props.addMessage()
     event.preventDefault()
   }
 
@@ -27,7 +23,7 @@ const Dialogs = (props) => {
         name: dialog.name,
         id: dialog.id,
         key: dialog.id,
-        dispatch: props.dispatch
+        selectedDialogChanged: props.selectedDialogChanged
       }
       if ( dialog.id === props.dialogsPage.selectedDialogId ) {
         attr['isActive'] = true
@@ -44,7 +40,7 @@ const Dialogs = (props) => {
       </div>
       <div className={styles.form}> 
         <form>
-          <textarea ref={ textareaElement } onChange={changeMessageTextHandler} value={props.dialogsPage.newMessageText} className={styles.text} type='textarea' rows={4} placeholder='Your message' />
+          <textarea onChange={changeMessageTextHandler} value={props.newMessageText} className={styles.text} type='textarea' rows={4} placeholder='Your message' />
           <button onClick={ addMessageHandler }  className={styles.btn}>Send</button>
         </form>
       </div>
