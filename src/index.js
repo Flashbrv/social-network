@@ -4,10 +4,10 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import './index.css'
 import App from './App'
 import store from './redux/redux-store'
-import { Provider } from './StoreContext'
+import { Provider } from 'react-redux'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
-export const rerenderEntireTree = (state) => {  
+export const rerenderEntireTree = () => {  
   root.render(
     <React.StrictMode>
       <Router>
@@ -19,9 +19,8 @@ export const rerenderEntireTree = (state) => {
   )
 }
 
-rerenderEntireTree(store.getState())
+rerenderEntireTree()
 
 store.subscribe( () => {
-  let state = store.getState()
-  rerenderEntireTree(state)
+  rerenderEntireTree()
 })
