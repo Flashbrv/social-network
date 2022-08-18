@@ -19,6 +19,7 @@ const profileReducer = (state = initialState, action) => {
         likes: 0
       }
       let newState = {...state, newPostText: ''}
+      newState.posts = [...state.posts]
       newState.posts.push(newPost)
       return newState
     }
@@ -27,7 +28,7 @@ const profileReducer = (state = initialState, action) => {
       return newState
     }
     default: 
-      return {...state}
+      return state
   }
 }
 

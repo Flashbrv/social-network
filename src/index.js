@@ -7,20 +7,12 @@ import store from './redux/redux-store'
 import { Provider } from 'react-redux'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
-export const rerenderEntireTree = () => {  
-  root.render(
-    <React.StrictMode>
-      <Router>
-        <Provider store={store} >
-          <App />
-        </Provider>
-      </Router>
-    </React.StrictMode>
-  )
-}
-
-rerenderEntireTree()
-
-store.subscribe( () => {
-  rerenderEntireTree()
-})
+root.render(
+  <React.StrictMode>
+    <Router>
+      <Provider store={store} >
+        <App />
+      </Provider>
+    </Router>
+  </React.StrictMode>
+)

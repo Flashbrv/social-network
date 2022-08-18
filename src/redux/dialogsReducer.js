@@ -38,6 +38,7 @@ const dialogsReducer = (state = initialState, action) => {
         ava: 'https://vjoy.cc/wp-content/uploads/2020/11/volk_kartinki_11_02065205-768x576-1.jpg'
       }
       let newState = {...state, newMessageText: ''}
+      newState.messages = [...state.messages]
       newState.messages.push(newMessage)
       return newState
     }
@@ -50,7 +51,7 @@ const dialogsReducer = (state = initialState, action) => {
       return newState
     }
     default:
-      return {...state}
+      return state
   }
 }
 
