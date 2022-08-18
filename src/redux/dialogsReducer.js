@@ -30,25 +30,29 @@ const initialState = {
 const dialogsReducer = (state = initialState, action) => {
   switch(action.type) { 
     case ADD_MESSAGE: {
-      let newId = state.messages.length + 1
       let newMessage = {
-        id: newId,
+        id: state.messages.length + 1,
         text: state.newMessageText,
         nick: 'Я',
         ava: 'https://vjoy.cc/wp-content/uploads/2020/11/volk_kartinki_11_02065205-768x576-1.jpg'
       }
-      let newState = {...state, newMessageText: ''}
-      newState.messages = [...state.messages]
-      newState.messages.push(newMessage)
-      return newState
+      return {
+        ...state, 
+        newMessageText: '', 
+        messages: [...state.messages, newMessage]
+      }
     }
     case CHANGE_MESSAGE_TEXT: {
-      let newState = {...state, newMessageText: action.text}
-      return newState
+      return {
+        ...state, 
+        newMessageText: action.text
+      }
     }
     case CHANGE_SELECTED_DIALOG: {
-      let newState = {...state, selectedDialogId: action.id}
-      return newState
+      return {
+        ...state, 
+        selectedDialogId: action.id
+      }
     }
     default:
       return state
