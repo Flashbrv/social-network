@@ -1,0 +1,29 @@
+.usersContainer {
+  width: 100%;
+  display: grid;
+}
+
+.title {
+  text-align: center;
+  color: darkolivegreen;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.usersList {
+
+}
+
+.buttonContainer {
+  display: grid;
+}
+
+.loadMoreButton {
+  justify-self: center;
+  background-color: #31AD35;
+  border: 1px solid #38613A;
+  color: #fff;
+  padding: 15px 60px;
+  margin-top: 25px;
+  margin-bottom: 30px;  
+}

@@ -1,0 +1,81 @@
+.user {
+  display: grid;
+  grid-template: 
+    "userLabel userContent";
+  grid-template-columns: 2fr 7fr;
+  margin: 10px;
+}
+
+.userLabel {
+  grid-area: userLabel;
+  display: grid;
+}
+
+.userImg {
+  align-self: center;
+  margin: 0 auto;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+
+.followBtn {
+  margin-top: 10px;
+  align-self: center;
+  justify-self: center;
+  background-color: #31AD35;
+  border: 1px solid #38613A;
+  color: #fff;
+  width: 120px;
+  padding: 10px auto;
+}
+
+.userContent {
+  grid-area: userContent;
+  display: grid;
+  grid-template: 
+    "fullName city"
+    "aboutMe country";
+  grid-template-columns: 9fr 2fr;
+  background-color: #f2f1f1;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 100%;
+  max-height: 100%;
+  border: #38613A solid 1px;
+  position: relative;
+  color: darkolivegreen;
+  font-size: 16px;
+}
+
+.userContent::before {
+  position: absolute;
+  content: "";
+  left: -11px;
+  top: 20px;
+  width: 0; 
+  height: 0; 
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
+  border-right:10px solid #38613A;
+}
+
+.fullName {
+  grid-area: fullName;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: start;
+}
+
+.aboutMe {
+  grid-area: aboutMe;
+  text-align: start;
+}
+
+.city {
+  grid-area: city;
+}
+
+.country {
+  grid-area: country;
+}

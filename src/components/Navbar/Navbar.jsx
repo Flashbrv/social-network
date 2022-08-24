@@ -32,6 +32,11 @@ const Navbar = (props) => {
             Налаштування
           </NavLink>
         </div>
+        <div className={styles.item}>
+          <NavLink to='/users' className={ ({isActive}) => isActive ? styles.activeLink : undefined } >
+            Користувачі
+          </NavLink>
+        </div>
       </nav>
       
       <FriendsOnlineContainer />
