@@ -27,3 +27,21 @@
   margin-top: 25px;
   margin-bottom: 30px;  
 }
+
+.pageButtons {
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+}
+.pageButtons span {
+  background-color: #31AD35;
+  border: 1px solid #38613A;
+  cursor: pointer;
+  padding: 5px;
+  margin-right: 3px;
+}
+
+.pageButtonSelected {
+  font-size: 18px;
+  font-weight: bold;
+}

@@ -1,9 +1,19 @@
 const SET_USERS = 'SET_USERS'
 const FOLLOW_USER = 'FOLLOW_USER'
 const UNFOLLOW_USER = 'UNFOLLOW_USER'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT' 
+const SET_TOTAL_USERS_PAGES = 'SET_TOTAL_USERS_PAGES'
+const SHOW_FETCHING = 'SHOW_FETCHING'
+const HIDE_FETCHING = 'HIDE_FETCHING'
 
 const initialState = {
-  users: []
+  users: [],
+  currentPage: 1,
+  usersPerPage: 5,
+  totalUsersCount: 0,
+  totalUsersPages: 0,
+  isFetching: false
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -37,6 +47,36 @@ const usersReducer = (state = initialState, action) => {
         })
       }
 
+    case SET_CURRENT_PAGE: 
+      return {
+        ...state,
+        currentPage: action.pageNumber
+      }
+
+    case SET_TOTAL_USERS_COUNT:
+      return {
+        ...state,
+        totalUsersCount: action.totalUsersCount
+      }
+
+    case SET_TOTAL_USERS_PAGES: 
+      return {
+        ...state,
+        totalUsersPages: action.totalUsersPages
+      }
+
+    case SHOW_FETCHING:
+      return {
+        ...state,
+        isFetching: true
+      }
+
+    case HIDE_FETCHING:
+      return {
+        ...state,
+        isFetching: false
+      }
+
     default:
       return state
   }
@@ -45,6 +85,10 @@ const usersReducer = (state = initialState, action) => {
 export const setUsersAC = (users) => ({type: SET_USERS, users})
 export const followUserAC = (userId) => ({type: FOLLOW_USER, userId})
 export const unfollowUserAC = (userId) => ({type: UNFOLLOW_USER, userId})
-
+export const setCurrentPageAC = (pageNumber) => ({type: SET_CURRENT_PAGE, pageNumber})
+export const setTotalUsersCountAC = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
+export const setTotalUsersPagesAC = (totalUsersPages) => ({type: SET_TOTAL_USERS_PAGES, totalUsersPages})
+export const showFetchingAC = () => ({type:SHOW_FETCHING})
+export const hideFetchingAC = () => ({type:HIDE_FETCHING})
 
 export default usersReducer;
