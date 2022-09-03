@@ -59,14 +59,14 @@ const dialogsReducer = (state = initialState, action) => {
   }
 }
 
-export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
-export const changeMessageTextActionCreator = (text) => {
+export const addMessage = () => ({type: ADD_MESSAGE})
+export const changeMessageText = (text) => {
   return {
     type: CHANGE_MESSAGE_TEXT, 
     text: text
   }
 }
-export const changeSelectedDialogActionCreator = (id) => {
+export const changeSelectedDialog = (id) => {
   return {
     type: CHANGE_SELECTED_DIALOG,
     id: id

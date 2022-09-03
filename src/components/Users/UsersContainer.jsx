@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { followUserAC, hideFetchingAC, setCurrentPageAC, setTotalUsersCountAC, setTotalUsersPagesAC, setUsersAC, showFetchingAC, unfollowUserAC } from '../../redux/usersReducer'
+import { followUser, hideFetching, setCurrentPage, setTotalUsersCount, setTotalUsersPages, setUsers, showFetching, unfollowUser } from '../../redux/usersReducer'
 import * as axios from 'axios'
 import Users from './Users'
 
@@ -35,14 +35,12 @@ class UsersContainer extends React.Component {
         totalUsersPages = {this.props.totalUsersPages}
         currentPage = {this.props.currentPage}
         setCurrentPage = {this.setCurrentPage}
-        follow = {this.props.follow}
-        unfollow = {this.props.unfollow}
+        followUser = {this.props.followUser}
+        unfollowUser = {this.props.unfollowUser}
         isFetching = {this.props.isFetching}
       />
     )
-  }
-
-  
+  }  
 }
 
 let mapStateToProps = (state) => {
@@ -54,33 +52,15 @@ let mapStateToProps = (state) => {
     isFetching: state.usersPage.isFetching
   }
 }
-let mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userId) => {
-      dispatch(followUserAC(userId))
-    },
-    unfollow: (userId) => {
-      dispatch(unfollowUserAC(userId))
-    },
-    setUsers: (users) => {
-      dispatch(setUsersAC(users))
-    },
-    setCurrentPage: (currentPage) => {
-      dispatch(setCurrentPageAC(currentPage))
-    },
-    setTotalUsersCount: (totalUsersCount) => {
-      dispatch(setTotalUsersCountAC(totalUsersCount))
-    },
-    setTotalUsersPages: (totalUsersPages) => {
-      dispatch(setTotalUsersPagesAC(totalUsersPages))
-    },
-    showFetching: () => {
-      dispatch(showFetchingAC())
-    },
-    hideFetching: () => {
-      dispatch(hideFetchingAC())
-    }
-   }
-}
 
-export default  connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default  connect(mapStateToProps, 
+  {
+    followUser,
+    unfollowUser,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    setTotalUsersPages,
+    showFetching,
+    hideFetching
+  })(UsersContainer)

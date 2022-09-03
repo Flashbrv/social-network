@@ -7,7 +7,7 @@ const Dialog = (props) => {
 
   const onClickHandler = (event) => {
     event.preventDefault()
-    props.selectedDialogChanged(props.id)
+    props.changeSelectedDialog(props.id)
   }
 
   return (

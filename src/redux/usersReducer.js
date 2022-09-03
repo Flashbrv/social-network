@@ -82,13 +82,13 @@ const usersReducer = (state = initialState, action) => {
   }
 }
 
-export const setUsersAC = (users) => ({type: SET_USERS, users})
-export const followUserAC = (userId) => ({type: FOLLOW_USER, userId})
-export const unfollowUserAC = (userId) => ({type: UNFOLLOW_USER, userId})
-export const setCurrentPageAC = (pageNumber) => ({type: SET_CURRENT_PAGE, pageNumber})
-export const setTotalUsersCountAC = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
-export const setTotalUsersPagesAC = (totalUsersPages) => ({type: SET_TOTAL_USERS_PAGES, totalUsersPages})
-export const showFetchingAC = () => ({type:SHOW_FETCHING})
-export const hideFetchingAC = () => ({type:HIDE_FETCHING})
+export const setUsers = (users) => ({type: SET_USERS, users})
+export const followUser = (userId) => ({type: FOLLOW_USER, userId})
+export const unfollowUser = (userId) => ({type: UNFOLLOW_USER, userId})
+export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, pageNumber})
+export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
+export const setTotalUsersPages = (totalUsersPages) => ({type: SET_TOTAL_USERS_PAGES, totalUsersPages})
+export const showFetching = () => ({type:SHOW_FETCHING})
+export const hideFetching = () => ({type:HIDE_FETCHING})
 
 export default usersReducer;

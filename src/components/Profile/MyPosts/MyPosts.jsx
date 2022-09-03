@@ -8,7 +8,7 @@ const MyPosts = (props) => {
   
   const addNewPostHandler = (event) => {
     event.preventDefault()
-    props.addNewPost()
+    props.addPost()
   }
 
   const changePostTextHandler = (event) => {
