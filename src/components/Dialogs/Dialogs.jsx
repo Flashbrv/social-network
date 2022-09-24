@@ -25,9 +25,11 @@ const Dialogs = (props) => {
         key: dialog.id,
         changeSelectedDialog: props.changeSelectedDialog
       }
+
       if ( dialog.id === props.dialogsPage.selectedDialogId ) {
         attr['isActive'] = true
       }
+      
       return <Dialog  {...attr} />
     })
 

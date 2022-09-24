@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import styles from './User.module.css'
 
 
@@ -6,9 +7,14 @@ const User = (props) => {
   return (
     <div className={styles.user}>
       <div className={styles.userLabel}>
-        <img src={props.avaPath} className={styles.userImg}></img>
-        {props.followed ? <button className={styles.followBtn} onClick={() => {props.unfollow(props.id)}}>UNFOLLOW</button>
-          : <button className={styles.followBtn} onClick={() => {props.follow(props.id)}}>FOLLOW</button>}
+        <NavLink to={'/profile/' + props.id}>
+          <img src={props.avaPath} className={styles.userImg}></img>
+        </NavLink>
+        {props.followed 
+          ? <button disabled={props.followingInProgress.some(userId => userId === props.id)} 
+                    className={styles.followBtn} onClick={() => {props.unfollowUser(props.id)}}>UNFOLLOW</button>
+          : <button disabled={props.followingInProgress.some(userId => userId === props.id)} 
+                    className={styles.followBtn} onClick={() => {props.followUser(props.id)}}>FOLLOW</button>}
       </div>
       <div className={styles.userContent}>
         <div className={styles.fullName}>{props.fullName}</div>

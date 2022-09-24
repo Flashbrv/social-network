@@ -1,31 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { followUser, hideFetching, setCurrentPage, setTotalUsersCount, setTotalUsersPages, setUsers, showFetching, unfollowUser } from '../../redux/usersReducer'
-import * as axios from 'axios'
+import { followUser, 
+  setCurrentPage, 
+  unfollowUser, 
+  getUsers } from '../../redux/usersReducer'
 import Users from './Users'
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.showFetching()
-    axios.get(`http://localhost:8080/api/users?pageNumber=${this.props.currentPage-1}&itemsCount=${this.props.usersPerPage}`)
-      .then(response => {
-        this.props.setUsers(response.data.content)
-        this.props.setTotalUsersCount(response.data.totalElements)
-        this.props.setTotalUsersPages(response.data.totalPages)
-        this.props.hideFetching()
-      })
+    this.props.getUsers(this.props.currentPage, this.props.usersPerPage)
   }
 
   setCurrentPage = (currentPage) => {
-    this.props.showFetching()
-    this.props.setCurrentPage(currentPage)
-    axios.get(`http://localhost:8080/api/users?pageNumber=${currentPage-1}&itemsCount=${this.props.usersPerPage}`)
-      .then(response => {  
-        this.props.setUsers(response.data.content)
-        this.props.setTotalUsersCount(response.data.totalElements)
-        this.props.setTotalUsersPages(response.data.totalPages)
-        this.props.hideFetching()
-      })
+    this.props.getUsers(currentPage, this.props.usersPerPage)
   }
 
   render() {
@@ -38,6 +25,7 @@ class UsersContainer extends React.Component {
         followUser = {this.props.followUser}
         unfollowUser = {this.props.unfollowUser}
         isFetching = {this.props.isFetching}
+        followingInProgress = {this.props.followingInProgress}
       />
     )
   }  
@@ -49,7 +37,8 @@ let mapStateToProps = (state) => {
     currentPage: state.usersPage.currentPage,
     usersPerPage: state.usersPage.usersPerPage,
     totalUsersPages: state.usersPage.totalUsersPages,
-    isFetching: state.usersPage.isFetching
+    isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress
   }
 }
 
@@ -57,10 +46,6 @@ export default  connect(mapStateToProps,
   {
     followUser,
     unfollowUser,
-    setUsers,
     setCurrentPage,
-    setTotalUsersCount,
-    setTotalUsersPages,
-    showFetching,
-    hideFetching
+    getUsers
   })(UsersContainer)

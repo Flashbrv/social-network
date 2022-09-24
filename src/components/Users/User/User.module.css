@@ -1,14 +1,23 @@
+a {
+  text-decoration: none;
+}
 .user {
   display: grid;
   grid-template: 
     "userLabel userContent";
   grid-template-columns: 2fr 7fr;
   margin: 10px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .userLabel {
   grid-area: userLabel;
   display: grid;
+}
+
+.userLabel a {
+  text-align: center;
 }
 
 .userImg {
@@ -28,6 +37,19 @@
   color: #fff;
   width: 120px;
   padding: 10px auto;
+  cursor: pointer;
+}
+
+.followBtn:disabled {
+  margin-top: 10px;
+  align-self: center;
+  justify-self: center;
+  background-color: #38613A;
+  border: 1px solid #31AD35;
+  color: #fff;
+  width: 120px;
+  padding: 10px auto;
+  cursor: default;
 }
 
 .userContent {

@@ -18,9 +18,11 @@
 
 .person_img {
   grid-area: pdi;
-  height: 150px;
-  background: url(https://vjoy.cc/wp-content/uploads/2020/11/volk_kartinki_11_02065205-768x576-1.jpg) no-repeat center;
-  background-size: cover;
+  max-height: 150px;
+  width: auto;
+  border-radius: 8px;
+  padding: 5px;
+  border: 1px solid #ddd;
 }
 
 .person_title {
@@ -40,3 +42,9 @@
   font-weight: bold;
 }
 
+.person_data a {
+  font-size: 22px;
+  padding-right: 5px;
+  text-decoration: none;
+  color: darkolivegreen;
+}

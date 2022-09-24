@@ -36,8 +36,9 @@ const Users = (props) => {
                     fullName={u.fullName}
                     aboutMe={u.aboutText} 
                     location={u.location} 
-                    follow={props.followUser}
-                    unfollow={props.unfollowUser} />
+                    followUser={props.followUser}
+                    unfollowUser={props.unfollowUser}
+                    followingInProgress = {props.followingInProgress} />
             )}) 
         }
       </div> 

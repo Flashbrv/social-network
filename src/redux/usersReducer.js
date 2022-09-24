@@ -1,3 +1,5 @@
+import { usersAPI } from '../api/api'
+
 const SET_USERS = 'SET_USERS'
 const FOLLOW_USER = 'FOLLOW_USER'
 const UNFOLLOW_USER = 'UNFOLLOW_USER'
@@ -6,6 +8,7 @@ const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const SET_TOTAL_USERS_PAGES = 'SET_TOTAL_USERS_PAGES'
 const SHOW_FETCHING = 'SHOW_FETCHING'
 const HIDE_FETCHING = 'HIDE_FETCHING'
+const FOLLOW_IS_FETCHING = 'FOLLOW_IS_FETCHING'
 
 const initialState = {
   users: [],
@@ -13,7 +16,8 @@ const initialState = {
   usersPerPage: 5,
   totalUsersCount: 0,
   totalUsersPages: 0,
-  isFetching: false
+  isFetching: false,
+  followingInProgress: []
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -77,18 +81,67 @@ const usersReducer = (state = initialState, action) => {
         isFetching: false
       }
 
+    case FOLLOW_IS_FETCHING: {
+      if (action.isFetching) {
+        return {
+          ...state, 
+          followingInProgress: [...state.followingInProgress, action.userId]
+        }
+      } else { 
+        return {
+          ...state, 
+          followingInProgress: state.followingInProgress.filter(userId => userId !== action.userId)
+        }
+      }
+    }      
+
     default:
       return state
   }
 }
 
 export const setUsers = (users) => ({type: SET_USERS, users})
-export const followUser = (userId) => ({type: FOLLOW_USER, userId})
-export const unfollowUser = (userId) => ({type: UNFOLLOW_USER, userId})
+export const followUserSuccess = (userId) => ({type: FOLLOW_USER, userId})
+export const unfollowUserSuccess = (userId) => ({type: UNFOLLOW_USER, userId})
 export const setCurrentPage = (pageNumber) => ({type: SET_CURRENT_PAGE, pageNumber})
 export const setTotalUsersCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, totalUsersCount})
 export const setTotalUsersPages = (totalUsersPages) => ({type: SET_TOTAL_USERS_PAGES, totalUsersPages})
 export const showFetching = () => ({type:SHOW_FETCHING})
 export const hideFetching = () => ({type:HIDE_FETCHING})
+export const followIsFetching = (isFetching, userId) => ({type: FOLLOW_IS_FETCHING, isFetching, userId}) 
 
-export default usersReducer;
+export const getUsers = (currentPage, usersPerPage) => (dispatch) => {
+  dispatch(showFetching())
+  dispatch(setCurrentPage(currentPage))
+  usersAPI.getUsers(currentPage, usersPerPage)
+    .then(data => {
+      dispatch(setUsers(data.content))
+      dispatch(setTotalUsersCount(data.totalElements))
+      dispatch(setTotalUsersPages(data.totalPages))
+      dispatch(hideFetching())
+    })
+}
+
+export const followUser = (userId) => (dispatch) => {
+  dispatch(followIsFetching(true, userId))
+  usersAPI.followUser(userId)
+    .then(data => {  
+      if (data.resultCode === 0) {
+        dispatch(followUserSuccess(userId))
+      }
+      dispatch(followIsFetching(false, userId))
+    })
+}
+
+export const unfollowUser = (userId) => (dispatch) => {
+  dispatch(followIsFetching(true, userId))
+  usersAPI.unfollowUser(userId)
+    .then(data => {  
+      if (data.resultCode === 0) {
+        dispatch(unfollowUserSuccess(userId))
+      }
+      dispatch(followIsFetching(false, userId))
+    })
+}
+
+export default usersReducer

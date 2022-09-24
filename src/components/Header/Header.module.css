@@ -2,7 +2,7 @@
   grid-area: header;
   background-color: #1B611D;
   display: grid;
-  grid-template-columns: 1fr 10fr;
+  grid-template-columns: 1fr 10fr 3fr;
   justify-items: center;
 }
 
@@ -17,4 +17,26 @@
   font-size: 21px;
   text-transform: uppercase;
   color: #fff;
+}
+
+.loginBlock {
+  align-self: center;
+  border: #fff solid 1px;
+  border-radius: 3px;
+  padding: 5px;
+  color: #fff;
+  margin-right: 15px;
+}
+
+.loginBlock a {
+  color: #fff;
+  text-align: right;
+  text-decoration: none;
+}
+
+.logoutButton {
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
