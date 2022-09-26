@@ -3,13 +3,14 @@ import styles from './ProfileInfo.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faInstagram, faYoutube, faGithub, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { faLink } from '@fortawesome/free-solid-svg-icons'
+import defaultUserImage from './../../../assets/images/user.png'
 
 const ProfileInfo = (props) => {
   return (
     <div>
       <div className={styles.image}></div>
       <div className={styles.person}>
-        <img src={props?.photos?.small} className={styles.person_img}></img>
+        <img src={props.photos.small ? props.photos.small : defaultUserImage} className={styles.person_img}></img>
         <div>
           <div className={styles.person_title}>
             {props?.fullName}

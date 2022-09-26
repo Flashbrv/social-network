@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
 import { followUser, 
   setCurrentPage, 
   unfollowUser, 
@@ -42,10 +44,13 @@ let mapStateToProps = (state) => {
   }
 }
 
-export default  connect(mapStateToProps, 
-  {
-    followUser,
-    unfollowUser,
-    setCurrentPage,
-    getUsers
-  })(UsersContainer)
+export default compose(
+  connect(mapStateToProps, 
+    {
+      followUser,
+      unfollowUser,
+      setCurrentPage,
+      getUsers
+    }),
+    withAuthRedirect
+)(UsersContainer)

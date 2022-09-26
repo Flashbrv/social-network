@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router'
+import { withParams } from './../../hoc/withParams'
 import { connect } from 'react-redux'
 import Profile from './Profile'
 import { getUserData } from '../../redux/profileReducer'
+import { withAuthRedirect } from '../../hoc/withAuthRedirect'
+import { compose } from 'redux'
 
 
 const ProfileContainer = (props) => {    
@@ -18,8 +20,8 @@ const mapStateToProps = (state) => ({
   isFetching: state.profilePage.isFetching
 })
 
-function withParams(Component) {
-  return (props) => <Component {...props} params={useParams()} />
-}
-
-export default connect(mapStateToProps, {getUserData})(withParams(ProfileContainer))
+export default compose(
+  connect(mapStateToProps, {getUserData}),
+  withParams,
+  withAuthRedirect
+)(ProfileContainer)
